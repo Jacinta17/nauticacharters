@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nauctica Yacht Charters</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            deepnavy: "#142b51",
+            sand: "#eae7da",
+            golden: "#e19e11",
+            oceanblue: "#0b3d91",
+          },
+          fontFamily: {
+            hatton: ['Hatton', 'serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    body { font-family: 'Hatton', serif; }
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    .fade-in { animation: fadeIn 1s ease-out forwards; opacity: 0; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Subtle shine effect on button */
+    .glow-btn {
+      position: relative; overflow: hidden;
+    }
+    .glow-btn::after {
+      content: ""; position: absolute; top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.8s;
+    }
+    .glow-btn:hover::after { left: 100%; }
+
+    /* Pop hover effect on cards */
+    .hover-pop {
+      transition: transform 0.3s ease-in-out;
+    }
+    .hover-pop:hover {
+      transform: scale(1.05);
+    }
+
+    /* Offset for fixed header */
+    section[id] {
+      scroll-margin-top: 4rem; /* Matches header height (h-16 = 4rem) */
+    }
+
+    /* Ensure consistent card height */
+    .charter-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .charter-card-content {
+      flex-grow: 1;
+    }
+  </style>
+</head>
+<body class="bg-sand text-deepnavy">
+  <!-- HEADER -->
+  <header class="text-sand shadow-lg fixed top-0 left-0 w-full z-50 bg-transparent">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+      
+      <!-- Nav Menu -->
+      <nav class="flex space-x-8 text-lg font-medium ml-auto">
+        <a href="#about" class="relative group">
+          About
+          <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-golden transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#charters" class="relative group">
+          Charters
+          <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-golden transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#gallery" class="relative group">
+          Gallery
+          <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-golden transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#contact" class="relative group">
+          Contact
+          <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-golden transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="relative h-screen overflow-hidden">
+    <img src="images/Desire Yacht/59.png" alt="Ocean view" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6 text-sand">
+      <img src="images/Nauctica ppt.png" alt="Nautica" class="mx-auto w-60 md:w-80">
+      <a href="https://wa.me/918999235847" class="mt-10 bg-golden text-deepnavy px-10 py-2 rounded-full font-semibold text-lg shadow-lg hover:bg-deepnavy hover:text-sand transition-all glow-btn">
+        Book Now
+      </a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-24 px-6 md:px-16 flex flex-col md:flex-row items-center gap-12">
+    <img src="images/Sea Eagle Yacht/53.png" alt="About Us" class="w-full md:w-1/2 rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-500">
+    <div class="md:w-1/2 fade-in">
+      <h2 class="text-5xl font-bold mb-6 text-deepnavy">About Us</h2>
+      <p class="text-lg leading-relaxed opacity-90">
+        At <span class="text-golden font-semibold">Nauctica</span> is Goa’s trusted name in private yacht charters. Known for our commitment to comfort, safety, and seamless service, we offer tailored cruising experiences for small groups, families, and large private parties. With private jetty access, well-maintained yachts, and a hospitality-first approach, Nauctica ensures your voyage is not just a ride, it's a memory.
+      </p>
+    </div>
+  </section>
+
+  <!-- BOOK NOW -->
+  <section id="book" class="relative bg-cover bg-center py-32 px-6 text-center text-sand" style="background-image: url('images/book.jpg');">
+    <div class="absolute inset-0 bg-deepnavy/70"></div>
+    <div class="relative z-10 max-w-3xl mx-auto fade-in">
+      <h2 class="text-5xl md:text-6xl font-bold mb-6">Book Your Experience</h2>
+      <p class="mb-8 text-lg opacity-90">Reserve your private yacht and let the Arabian Sea be your playground.</p>
+      <a href="https://wa.me/918999235847" target="_blank" class="bg-golden text-deepnavy px-12 py-4 rounded-full font-semibold text-xl shadow-lg hover:bg-deepnavy hover:text-sand transition-all glow-btn">
+        Reserve Now
+      </a>
+    </div>
+  </section>
+
+  <!-- CHARTERS -->
+  <section id="charters" class="bg-deepnavy text-sand py-20 px-6 md:px-16">
+    <h2 class="text-4xl font-bold mb-12 text-center fade-in">NAUTICA CHARTERS</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 fade-in">
+      <!-- SOLARIS YACHT -->
+      <div class="bg-oceanblue rounded-2xl shadow-xl border border-sand overflow-hidden charter-card hover-pop">
+        <div class="relative group">
+          <div class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+            <img src="images/Solaris Yacht/52.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/Solaris Yacht/53.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+          </div>
+          <div class="absolute inset-y-0 right-3 flex items-center opacity-0 group-hover:opacity-100 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+        <div class="p-5 bg-sand text-black flex flex-col charter-card-content">
+          <h3 class="text-xl font-bold mb-2 text-golden">SOLARIS YACHT</h3>
+          <p class="text-sm opacity-90 mb-3">
+            Ideal for intimate celebrations or peaceful sunset cruises.<br>
+            <span class="italic">Experience: 1 Hour Sailing + 1 Hour Anchoring</span>
+          </p>
+          <ul class="text-xs space-y-1 opacity-90 mb-4">
+            <li>✔ Water, Soft Drinks & Ice Cubes</li>
+            <li>✔ One A/C Room with Attached Washroom</li>
+            <li>✔ Crew Service</li>
+            <li>✔ Private Jetty & Parking</li>
+          </ul>
+          <button class="w-full bg-golden text-deepnavy font-semibold py-2.5 rounded-full shadow-md hover:bg-oceanblue hover:text-sand transition relative overflow-hidden mt-auto">
+            <span class="relative z-10">Book Now</span>
+            <span class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- BAY STAR YACHT -->
+      <div class="bg-oceanblue rounded-2xl shadow-xl border border-sand overflow-hidden charter-card hover-pop">
+        <div class="relative group">
+          <div class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+            <img src="images/Bay Star Yacht/54.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/Bay Star Yacht/55.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/Bay Star Yacht/58.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/Bay Star Yacht/57.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+          </div>
+          <div class="absolute inset-y-0 right-3 flex items-center opacity-0 group-hover:opacity-100 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+        <div class="p-5 bg-sand text-black flex flex-col charter-card-content">
+          <h3 class="text-xl font-bold mb-2 text-golden">BAY STAR YACHT</h3>
+          <p class="text-sm opacity-90 mb-3">
+            Perfect for relaxed gatherings with flexible cruising options.<br>
+            <span class="italic">Experience: 1 Hour Sailing + 1 Hour Anchorage OR 1.5 Hours of Continuous Sailing</span>
+          </p>
+          <ul class="text-xs space-y-1 opacity-90 mb-4">
+            <li>✔ Water, Soft Drinks & Ice Cubes</li>
+            <li>✔ One Room with Attached Washroom</li>
+            <li>✔ Crew Service</li>
+          </ul>
+          <button class="w-full bg-golden text-deepnavy font-semibold py-2.5 rounded-full shadow-md hover:bg-oceanblue hover:text-sand transition relative overflow-hidden mt-auto">
+            <span class="relative z-10">Book Now</span>
+            <span class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- AHILO YACHT -->
+      <div class="bg-oceanblue rounded-2xl shadow-xl border border-sand overflow-hidden charter-card hover-pop">
+        <div class="relative group">
+          <div class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+            <img src="images/Ahilo Yacht/54.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/Ahilo Yacht/55.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/Ahilo Yacht/56.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/Ahilo Yacht/57.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+          </div>
+          <div class="absolute inset-y-0 right-3 flex items-center opacity-0 group-hover:opacity-100 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+        <div class="p-5 bg-sand text-black flex flex-col charter-card-content">
+          <h3 class="text-xl font-bold mb-2 text-golden">AHILO YACHT</h3>
+          <p class="text-sm opacity-90 mb-3">
+            Spacious and elegant — great for larger private events.<br>
+            <span class="italic">Experience: 1 Hour Sailing + 1 Hour Anchoring</span>
+          </p>
+          <ul class="text-xs space-y-1 opacity-90 mb-4">
+            <li>✔ Water, Soft Drinks & Ice Cubes</li>
+            <li>✔ Double Deck</li>
+            <li>✔ One A/C Room with Attached Washroom</li>
+            <li>✔ Crew Service</li>
+            <li>✔ Private Jetty & Parking</li>
+          </ul>
+          <button class="w-full bg-golden text-deepnavy font-semibold py-2.5 rounded-full shadow-md hover:bg-oceanblue hover:text-sand transition relative overflow-hidden mt-auto">
+            <span class="relative z-10">Book Now</span>
+            <span class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- SEA EAGLE YACHT -->
+      <div class="bg-oceanblue rounded-2xl shadow-xl border border-sand overflow-hidden charter-card hover-pop">
+        <div class="relative group">
+          <div class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+            <img src="images/Sea Eagle Yacht/53.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/Sea Eagle Yacht/54.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/Sea Eagle Yacht/55.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/Sea Eagle Yacht/56.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+          </div>
+          <div class="absolute inset-y-0 right-3 flex items-center opacity-0 group-hover:opacity-100 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+        <div class="p-5 bg-sand text-black flex flex-col charter-card-content">
+          <h3 class="text-xl font-bold mb-2 text-golden">SEA EAGLE YACHT</h3>
+          <p class="text-sm opacity-90 mb-3">
+            Glide through the waters in style and comfort<br>
+            <span class="italic">Experience: 1 Hour Sailing + 1 Hour Anchoring</span>
+          </p>
+          <ul class="text-xs space-y-1 opacity-90 mb-4">
+            <li>✔ Water, Soft Drinks & Ice Cubes</li>
+            <li>✔ Bluetooth Speaker</li>
+            <li>✔ One Room with Attached Washroom</li>
+            <li>✔ Crew Service</li>
+          </ul>
+          <button class="w-full bg-golden text-deepnavy font-semibold py-2.5 rounded-full shadow-md hover:bg-oceanblue hover:text-sand transition relative overflow-hidden mt-auto">
+            <span class="relative z-10">Book Now</span>
+            <span class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- DESIRE YACHT -->
+      <div class="bg-oceanblue rounded-2xl shadow-xl border border-sand overflow-hidden charter-card hover-pop">
+        <div class="relative group">
+          <div class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+            <img src="images/Desire Yacht/55.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/Desire Yacht/56.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/Desire Yacht/57.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/Desire Yacht/58.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+          </div>
+          <div class="absolute inset-y-0 right-3 flex items-center opacity-0 group-hover:opacity-100 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+        <div class="p-5 bg-sand text-black flex flex-col charter-card-content">
+          <h3 class="text-xl font-bold mb-2 text-golden">DESIRE YACHT</h3>
+          <p class="text-sm opacity-90 mb-3">
+            Compact and fun, perfect for quick escapes on the sea.<br>
+            <span class="italic">Experience: 1 Hour Sailing + 1 Hour Anchoring</span>
+          </p>
+          <ul class="text-xs space-y-1 opacity-90 mb-4">
+            <li>✔ Water, Soft Drinks & Ice Cubes</li>
+            <li>✔ Bluetooth Speaker</li>
+            <li>✔ One Room with Attached Washroom</li>
+            <li>✔ Crew Service</li>
+          </ul>
+          <button class="w-full bg-golden text-deepnavy font-semibold py-2.5 rounded-full shadow-md hover:bg-oceanblue hover:text-sand transition relative overflow-hidden mt-auto">
+            <span class="relative z-10">Book Now</span>
+            <span class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- DREAMZ YACHT -->
+      <div class="bg-oceanblue rounded-2xl shadow-xl border border-sand overflow-hidden charter-card hover-pop">
+        <div class="relative group">
+          <div class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+            <img src="images/Dreamz Yacht/58.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/Dreamz Yacht/56.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/Dreamz Yacht/57.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/Dreamz Yacht/59.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+          </div>
+          <div class="absolute inset-y-0 right-3 flex items-center opacity-0 group-hover:opacity-100 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+        <div class="p-5 bg-sand text-black flex flex-col charter-card-content">
+          <h3 class="text-xl font-bold mb-2 text-golden">DREAMZ YACHT</h3>
+          <p class="text-sm opacity-90 mb-3">
+            A lively yacht perfect for birthday parties and group fun.<br>
+            <span class="italic">Experience: 1 Hour Sailing + 1 Hour Anchoring</span>
+          </p>
+          <ul class="text-xs space-y-1 opacity-90 mb-4">
+            <li>✔ Water, Soft Drinks & Ice Cubes</li>
+            <li>✔ Bluetooth Speaker</li>
+            <li>✔ One Room with Attached Washroom</li>
+            <li>✔ Crew Service</li>
+          </ul>
+          <button class="w-full bg-golden text-deepnavy font-semibold py-2.5 rounded-full shadow-md hover:bg-oceanblue hover:text-sand transition relative overflow-hidden mt-auto">
+            <span class="relative z-10">Book Now</span>
+            <span class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- BLACK PEARL -->
+      <div class="bg-oceanblue rounded-2xl shadow-xl border border-sand overflow-hidden charter-card hover-pop">
+        <div class="relative group">
+          <div class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+            <img src="images/Black Pearl/55.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/Black Pearl/56.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/Black Pearl/57.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/Black Pearl/58.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+          </div>
+          <div class="absolute inset-y-0 right-3 flex items-center opacity-0 group-hover:opacity-100 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+        <div class="p-5 bg-sand text-black flex flex-col charter-card-content">
+          <h3 class="text-xl font-bold mb-2 text-golden">BLACK PEARL</h3>
+          <p class="text-sm opacity-90 mb-3">
+            A classic cruising yacht with smooth vibes and great comfort.<br>
+            <span class="italic">Experience: 1 Hour Sailing + 1 Hour Anchoring</span>
+          </p>
+          <ul class="text-xs space-y-1 opacity-90 mb-4">
+            <li>✔ Water, Soft Drinks & Ice Cubes</li>
+            <li>✔ Bluetooth Speaker</li>
+            <li>✔ One Room with Attached Washroom</li>
+            <li>✔ Crew Service</li>
+          </ul>
+          <button class="w-full bg-golden text-deepnavy font-semibold py-2.5 rounded-full shadow-md hover:bg-oceanblue hover:text-sand transition relative overflow-hidden mt-auto">
+            <span class="relative z-10">Book Now</span>
+            <span class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- NAUCTICA TIANA YACHT -->
+      <div class="bg-oceanblue rounded-2xl shadow-xl border border-sand overflow-hidden charter-card hover-pop">
+        <div class="relative group">
+          <div class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+            <img src="images/Nauctica Tiana Yacht/55.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/Nauctica Tiana Yacht/56.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/Nauctica Tiana Yacht/57.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/Nauctica Tiana Yacht/58.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+          </div>
+          <div class="absolute inset-y-0 right-3 flex items-center opacity-0 group-hover:opacity-100 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+        <div class="p-5 bg-sand text-black flex flex-col charter-card-content">
+          <h3 class="text-xl font-bold mb-2 text-golden">NAUCTICA TIANA YACHT</h3>
+          <p class="text-sm opacity-90 mb-3">
+            Spacious and sociable, ideal for celebrations with friends and family.<br>
+            <span class="italic">Experience: 1 Hour Sailing + 1 Hour Anchoring</span>
+          </p>
+          <ul class="text-xs space-y-1 opacity-90 mb-4">
+            <li>✔ Water, Soft Drinks & Ice Cubes</li>
+            <li>✔ Bluetooth Speaker</li>
+            <li>✔ One Room with Attached Washroom</li>
+            <li>✔ Crew Service</li>
+          </ul>
+          <button class="w-full bg-golden text-deepnavy font-semibold py-2.5 rounded-full shadow-md hover:bg-oceanblue hover:text-sand transition relative overflow-hidden mt-auto">
+            <span class="relative z-10">Book Now</span>
+            <span class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- MI AMOR YACHT -->
+      <div class="bg-oceanblue rounded-2xl shadow-xl border border-sand overflow-hidden charter-card hover-pop">
+        <div class="relative group">
+          <div class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+            <img src="images/MiAmor Yacht/55.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/MiAmor Yacht/56.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/MiAmor Yacht/57.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/MiAmor Yacht/58.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+          </div>
+          <div class="absolute inset-y-0 right-3 flex items-center opacity-0 group-hover:opacity-100 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+        <div class="p-5 bg-sand text-black flex flex-col charter-card-content">
+          <h3 class="text-xl font-bold mb-2 text-golden">MI AMOR YACHT</h3>
+          <p class="text-sm opacity-90 mb-3">
+            Ultra Luxury The ultimate party yacht for grand events and celebrations.<br>
+            <span class="italic">Experience: 1 Hour Sailing + 1 Hour Anchoring</span>
+          </p>
+          <ul class="text-xs space-y-1 opacity-90 mb-4">
+            <li>✔ Water, Soft Drinks & Ice Cubes</li>
+            <li>✔ Bluetooth Speaker</li>
+            <li>✔ Bar Nibbles & One Beer Per Head</li>
+            <li>✔ 4 A/C Bedrooms with Attached Washrooms</li>
+            <li>✔ Living Area & Lounge Area</li>
+            <li>✔ Jacuzzi & Double Deck</li>
+            <li>✔ Premium Teak Wood Decking</li>
+            <li>✔ Full Crew Service</li>
+            <li>✔ Private Jetty with Private Parking</li>
+          </ul>
+          <button class="w-full bg-golden text-deepnavy font-semibold py-2.5 rounded-full shadow-md hover:bg-oceanblue hover:text-sand transition relative overflow-hidden mt-auto">
+            <span class="relative z-10">Book Now</span>
+            <span class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- FOXY LADY YACHT (MAJESTIC 66) -->
+      <div class="bg-oceanblue rounded-2xl shadow-xl border border-sand overflow-hidden charter-card hover-pop">
+        <div class="relative group">
+          <div class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+            <img src="images/foxy lady/55.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/foxy lady/57.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/foxy lady/58.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/foxy lady/59.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+          </div>
+          <div class="absolute inset-y-0 right-3 flex items-center opacity-0 group-hover:opacity-100 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+        <div class="p-5 bg-sand text-black flex flex-col charter-card-content">
+          <h3 class="text-xl font-bold mb-2 text-golden">FOXY LADY YACHT (MAJESTIC 66)</h3>
+          <p class="text-sm opacity-90 mb-3">
+            Luxury yacht for birthdays, sunset rides, proposals, weddings, parties, corporates, shoots, and anniversaries.<br>
+            <span class="italic">Experience: 1 Hour Sailing + 1 Hour Anchoring</span>
+          </p>
+          <ul class="text-xs space-y-1 opacity-90 mb-4">
+            <li>✔ Water, Soft Drinks, Ice Cubes & Ice box</li>
+            <li>✔ 3 AC Bedrooms</li>
+            <li>✔ 1 AC Lounge Area</li>
+            <li>✔ 4 A/C Bedrooms with Attached Washrooms</li>
+            <li>✔ 3 Washrooms</li>
+            <li>✔ Microwave & Fridge</li>
+            <li>✔ Glasses & Plates</li>
+            <li>✔ Exclusive Add-ons (chargeable)</li>
+          </ul>
+          <button class="w-full bg-golden text-deepnavy font-semibold py-2.5 rounded-full shadow-md hover:bg-oceanblue hover:text-sand transition relative overflow-hidden mt-auto">
+            <span class="relative z-10">Book Now</span>
+            <span class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- LEO MAR PRIVATE CRUISE -->
+      <div class="bg-oceanblue rounded-2xl shadow-xl border border-sand overflow-hidden charter-card hover-pop">
+        <div class="relative group">
+          <div class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+            <img src="images/LEO MAR  PRIVATE CRUISE/59.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/LEO MAR  PRIVATE CRUISE/56.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/LEO MAR  PRIVATE CRUISE/57.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+            <img src="images/LEO MAR  PRIVATE CRUISE/58.png" class="w-full h-56 object-cover flex-shrink-0 snap-center">
+          </div>
+          <div class="absolute inset-y-0 right-3 flex items-center opacity-0 group-hover:opacity-100 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+        <div class="p-5 bg-sand text-black flex flex-col charter-card-content">
+          <h3 class="text-xl font-bold mb-2 text-golden">LEO MAR PRIVATE CRUISE</h3>
+          <p class="text-sm opacity-90 mb-3">
+            Luxury yacht for birthdays, sunset rides, proposals, weddings, parties, corporates, shoots, and anniversaries.<br>
+            <span class="italic">Experience: 1 Hour Sailing + 1 Hour Anchoring</span>
+          </p>
+          <ul class="text-xs space-y-1 opacity-90 mb-4">
+            <li>✔ Water, Soft Drinks, Ice Cubes & Ice box</li>
+            <li>✔ JBL sound system plug and play</li>
+            <li>✔ 2 LED TV</li>
+            <li>✔ 2 washrooms</li>
+            <li>✔ 1 pantry</li>
+            <li>✔ Teak wood decking</li>
+            <li>✔ Upper deck covered with bar setup</li>
+            <li>✔ Tablets and chairs provide</li>
+            <li>✔ Disco led lights & Ambience lighting</li>
+            <li>✔ Bow sitting</li>
+            <li>✔ Private Jetty with Private Parking</li>
+          </ul>
+          <button class="w-full bg-golden text-deepnavy font-semibold py-2.5 rounded-full shadow-md hover:bg-oceanblue hover:text-sand transition relative overflow-hidden mt-auto">
+            <span class="relative z-10">Book Now</span>
+            <span class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+<section class="py-20 px-6 md:px-16 bg-sand">
+  <h2 class="text-4xl font-bold mb-12 text-deepnavy text-center fade-in">Why Choose Us</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-10 fade-in">
+
+    <!-- Luxury Yachts -->
+    <div class="text-center">
+      <div class="mx-auto mb-4 w-16 h-16 flex items-center justify-center rounded-full bg-golden text-sand shadow-lg">
+        <i class="fa-solid fa-gem text-2xl"></i>
+      </div>
+      <h3 class="text-xl font-semibold mb-2 text-deepnavy">Luxury Yachts</h3>
+      <p class="text-sm opacity-90">Modern yachts with luxury amenities.</p>
+    </div>
+
+    <!-- Personalized Service -->
+    <div class="text-center">
+      <div class="mx-auto mb-4 w-16 h-16 flex items-center justify-center rounded-full bg-golden text-sand shadow-lg">
+        <i class="fa-solid fa-user-tie text-2xl"></i>
+      </div>
+      <h3 class="text-xl font-semibold mb-2 text-deepnavy">Personalized Service</h3>
+      <p class="text-sm opacity-90">Hospitality designed around you.</p>
+    </div>
+
+    <!-- Well-maintained Yachts -->
+    <div class="text-center">
+      <div class="mx-auto mb-4 w-16 h-16 flex items-center justify-center rounded-full bg-golden text-sand shadow-lg">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+      </div>
+      <h3 class="text-xl font-semibold mb-2 text-deepnavy">Well-maintained Yachts</h3>
+      <p class="text-sm opacity-90">Well-kept yachts for a flawless voyage.</p>
+    </div>
+
+    <!-- Experienced Crew -->
+    <div class="text-center">
+      <div class="mx-auto mb-4 w-16 h-16 flex items-center justify-center rounded-full bg-golden text-sand shadow-lg">
+        <i class="fa-solid fa-people-group text-2xl"></i>
+      </div>
+      <h3 class="text-xl font-semibold mb-2 text-deepnavy">Experienced Crew</h3>
+      <p class="text-sm opacity-90">Safe, professional, friendly staff.</p>
+    </div>
+
+    <!-- Flexible Packages -->
+    <div class="text-center">
+      <div class="mx-auto mb-4 w-16 h-16 flex items-center justify-center rounded-full bg-golden text-sand shadow-lg">
+        <i class="fa-solid fa-box-open text-2xl"></i>
+      </div>
+      <h3 class="text-xl font-semibold mb-2 text-deepnavy">Flexible Packages</h3>
+      <p class="text-sm opacity-90">Custom routes, durations, and menus.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Add Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+  <!-- GALLERY -->
+  <section id="gallery" class="bg-deepnavy text-sand py-20 px-6 md:px-16">
+    <h2 class="text-4xl font-bold mb-12 text-center fade-in">Gallery</h2>
+    <div class="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory fade-in">
+      <img src="images/LEO MAR  PRIVATE CRUISE/59.png" class="w-80 h-56 object-cover rounded-xl shadow-lg hover:scale-105 transition-transform duration-500 snap-center flex-shrink-0">
+      <img src="images/Desire Yacht/59.png" class="w-80 h-56 object-cover rounded-xl shadow-lg hover:scale-105 transition-transform duration-500 snap-center flex-shrink-0">
+      <img src="images/MiAmor Yacht/60.png" class="w-80 h-56 object-cover rounded-xl shadow-lg hover:scale-105 transition-transform duration-500 snap-center flex-shrink-0">
+      <img src="images/Black Pearl/59.png" class="w-80 h-56 object-cover rounded-xl shadow-lg hover:scale-105 transition-transform duration-500 snap-center flex-shrink-0">
+      <img src="images/foxy lady/59.png" class="w-80 h-56 object-cover rounded-xl shadow-lg hover:scale-105 transition-transform duration-500 snap-center flex-shrink-0">
+      <img src="images/MiAmor Yacht/59.png" class="w-80 h-56 object-cover rounded-xl shadow-lg hover:scale-105 transition-transform duration-500 snap-center flex-shrink-0">
+      <img src="images/Black Pearl/60.png" class="w-80 h-56 object-cover rounded-xl shadow-lg hover:scale-105 transition-transform duration-500 snap-center flex-shrink-0">
+    </div>
+  </section>
+
+  <!-- CONTACT CTA -->
+  <section id="contact" class="py-20 px-6 md:px-16 text-center fade-in">
+    <h2 class="text-4xl font-bold mb-6 text-deepnavy">Ready to Sail?</h2>
+    <p class="mb-8 opacity-90">Contact us now to plan your perfect sea experience.</p>
+    <p class="mb-4 text-base sm:text-lg">📞 +91 89992 35847</p>
+    <a href="https://wa.me/918999235847" target="_blank" class="bg-golden text-deepnavy px-12 py-4 rounded-full font-semibold text-lg shadow-lg hover:bg-deepnavy hover:text-sand transition-all glow-btn">Enquire Now</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-3 px-6 text-center bg-golden text-deepnavy">
+    <p class="mb-4">&copy; 2025 Nauctica Yacht Charters</p>
+    <div class="flex justify-center gap-8 flex-wrap text-lg font-medium">
+      <a href="#" class="hover:text-deepnavy">Instagram</a>
+      <a href="#" class="hover:text-deepnavy">Facebook</a>
+    </div>
+  </footer>
+
+  <!-- Carousel Script -->
+  <script>
+    function nextSlide(carousel) {
+      const c = document.getElementById(carousel);
+      const w = c.children[0].offsetWidth;
+      c.scrollBy({ left: w, behavior: 'smooth' });
+    }
+    function prevSlide(carousel) {
+      const c = document.getElementById(carousel);
+      const w = c.children[0].offsetWidth;
+      c.scrollBy({ left: -w, behavior: 'smooth' });
+    }
+    // Navbar Scroll Behavior
+    document.addEventListener('DOMContentLoaded', () => {
+      const header = document.querySelector('header');
+      const heroSection = document.querySelector('#home');
+      let lastScrollY = window.scrollY;
+
+      // IntersectionObserver to monitor hero section visibility
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              header.classList.remove('hidden');
+            } else {
+              header.classList.add('hidden');
+            }
+          });
+        },
+        { threshold: 0.1 } // Trigger when 10% of hero section is visible
+      );
+      observer.observe(heroSection);
+
+      // Scroll direction check
+      window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > lastScrollY && currentScrollY > heroSection.offsetHeight) {
+          // Scrolling down and past hero section
+          header.classList.add('hidden');
+        } else if (currentScrollY < lastScrollY && currentScrollY <= heroSection.offsetHeight) {
+          // Scrolling up and within hero section
+          header.classList.remove('hidden');
+        }
+        lastScrollY = currentScrollY;
+      });
+    });  
+    </script>
+</body>
+</html>
