@@ -72,31 +72,43 @@
   </style>
 </head>
 <body class="bg-sand text-deepnavy">
+
   <!-- HEADER -->
-  <header class="text-sand shadow-lg fixed top-0 left-0 w-full z-50 bg-transparent">
-    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
-      
-      <!-- Nav Menu -->
-      <nav class="flex space-x-8 text-lg font-medium ml-auto">
-        <a href="#about" class="relative group">
-          About
-          <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-golden transition-all duration-300 group-hover:w-full"></span>
-        </a>
-        <a href="#charters" class="relative group">
-          Charters
-          <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-golden transition-all duration-300 group-hover:w-full"></span>
-        </a>
-        <a href="#gallery" class="relative group">
-          Gallery
-          <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-golden transition-all duration-300 group-hover:w-full"></span>
-        </a>
-        <a href="#contact" class="relative group">
-          Contact
-          <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-golden transition-all duration-300 group-hover:w-full"></span>
-        </a>
-      </nav>
-    </div>
-  </header>
+<header class="text-sand shadow-lg fixed top-0 left-0 w-full z-[1000] bg-transparent">
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex space-x-8 text-lg font-medium ml-auto">
+      <a href="#about" class="relative group">About
+        <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#daa502] transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a href="#charters" class="relative group">Charters
+        <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#daa502] transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a href="#gallery" class="relative group">Gallery
+        <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#daa502] transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a href="#contact" class="relative group">Contact
+        <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#daa502] transition-all duration-300 group-hover:w-full"></span>
+      </a>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button id="menuBtn" class="md:hidden text-3xl text-[#ffefcd] focus:outline-none">&#9776;</button>
+  </div>
+
+  <!-- Overlay -->
+  <div id="overlay" class="hidden fixed inset-0 bg-black/50 z-[900]"></div>
+
+  <!-- Mobile Menu -->
+  <nav id="mobileMenu" class="md:hidden fixed top-0 left-0 w-full bg-[#143234] text-[#ffefcd] flex flex-col items-center space-y-6 pt-20 pb-6 transform -translate-y-full transition-all duration-300 z-[950]">
+    <a href="#about" class="text-lg w-full text-center py-2">About</a>
+    <a href="#charters" class="text-lg w-full text-center py-2">Charters</a>
+    <a href="#gallery" class="text-lg w-full text-center py-2">Gallery</a>
+    <a href="#contact" class="text-lg w-full text-center py-2">Contact</a>
+  </nav>
+</header>
+
 
   <!-- HERO -->
   <section id="home" class="relative h-screen overflow-hidden">
@@ -616,51 +628,72 @@
   </footer>
 
   <!-- Carousel Script -->
-  <script>
-    function nextSlide(carousel) {
-      const c = document.getElementById(carousel);
-      const w = c.children[0].offsetWidth;
-      c.scrollBy({ left: w, behavior: 'smooth' });
-    }
-    function prevSlide(carousel) {
-      const c = document.getElementById(carousel);
-      const w = c.children[0].offsetWidth;
-      c.scrollBy({ left: -w, behavior: 'smooth' });
-    }
-    // Navbar Scroll Behavior
-    document.addEventListener('DOMContentLoaded', () => {
-      const header = document.querySelector('header');
-      const heroSection = document.querySelector('#home');
-      let lastScrollY = window.scrollY;
+ <script>
+document.addEventListener('DOMContentLoaded', () => {
 
-      // IntersectionObserver to monitor hero section visibility
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              header.classList.remove('hidden');
-            } else {
-              header.classList.add('hidden');
-            }
-          });
-        },
-        { threshold: 0.1 } // Trigger when 10% of hero section is visible
-      );
-      observer.observe(heroSection);
+  // Carousel Controls
+  function nextSlide(carousel) {
+    const c = document.getElementById(carousel);
+    if (!c) return;
+    const w = c.children[0]?.offsetWidth || 0;
+    c.scrollBy({ left: w, behavior: 'smooth' });
+  }
 
-      // Scroll direction check
-      window.addEventListener('scroll', () => {
-        const currentScrollY = window.scrollY;
-        if (currentScrollY > lastScrollY && currentScrollY > heroSection.offsetHeight) {
-          // Scrolling down and past hero section
-          header.classList.add('hidden');
-        } else if (currentScrollY < lastScrollY && currentScrollY <= heroSection.offsetHeight) {
-          // Scrolling up and within hero section
-          header.classList.remove('hidden');
-        }
-        lastScrollY = currentScrollY;
-      });
-    });  
-    </script>
+  function prevSlide(carousel) {
+    const c = document.getElementById(carousel);
+    if (!c) return;
+    const w = c.children[0]?.offsetWidth || 0;
+    c.scrollBy({ left: -w, behavior: 'smooth' });
+  }
+
+  // Navbar Behavior
+  const header = document.querySelector('header');
+  const heroSection = document.querySelector('#home'); // make sure your hero section has id="home"
+
+  if (header && heroSection) {
+    let lastScrollY = window.scrollY;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          header.classList.toggle('hidden', !entry.isIntersecting);
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(heroSection);
+
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > heroSection.offsetHeight) {
+        header.classList.add('hidden');
+      } else if (currentScrollY < lastScrollY) {
+        header.classList.remove('hidden');
+      }
+      lastScrollY = currentScrollY;
+    });
+  }
+
+  // Mobile Menu Toggle
+  const btn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const overlay = document.getElementById("overlay");
+
+  if (btn && mobileMenu && overlay) {
+    btn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("-translate-y-full");
+      overlay.classList.toggle("hidden");
+    });
+
+    overlay.addEventListener("click", () => {
+      mobileMenu.classList.add("-translate-y-full");
+      overlay.classList.add("hidden");
+    });
+  }
+
+});
+</script>
+
 </body>
 </html>
